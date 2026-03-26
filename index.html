@@ -18,104 +18,61 @@
 <div id="particles-js"></div>
 
 <header>
-
 <h1 class="typing"></h1>
 <p>My AI Development Portfolio - Dyllan Wang</p>
 
 <button class="modeToggle" onclick="toggleMode()">🌙 Toggle Mode</button>
-
 <input type="text" id="searchBar" placeholder="Search projects..." onkeyup="searchProjects()">
-
 </header>
 
 <section class="projects">
 
-<!-- PROJECT 1 -->
 <div class="card">
 <h2>🎨 AI Image Generator</h2>
 <p>Creates AI generated images</p>
-<button onclick="openProject(
-'AI Image Generator',
-'I built this to generate creative AI images using prompts and different styles.',
-'images/generate-image.jpg'
-)">View</button>
+<button onclick="openProject('AI Image Generator','Creative AI images using prompts.','images/generate-image.jpg')">View</button>
 </div>
 
-<!-- PROJECT 2 -->
 <div class="card">
 <h2>✍️ AI Text Generator</h2>
 <p>Generates essays and writing</p>
-<button onclick="openProject(
-'AI Text Generator',
-'This helps generate essays, summaries, and writing ideas using AI.',
-'images/generate-text.jpg'
-)">View</button>
+<button onclick="openProject('AI Text Generator','AI writing assistant.','images/generate-text.jpg')">View</button>
 </div>
 
-<!-- PROJECT 3 -->
 <div class="card">
 <h2>💻 Code Generator</h2>
 <p>AI generates programming code</p>
-<button onclick="openProject(
-'Code Generator',
-'I used AI to help generate HTML, CSS, and JavaScript code.',
-'images/generate-code.jpg'
-)">View</button>
+<button onclick="openProject('Code Generator','Generate HTML, CSS, JS easily.','images/generate-code.jpg')">View</button>
 </div>
 
-<!-- PROJECT 4 -->
 <div class="card">
 <h2>🎬 Video Generator</h2>
 <p>Create videos with AI</p>
-<button onclick="openProject(
-'Video Generator',
-'This project creates AI videos from prompts and scripts.',
-'images/generate-video.mp4'
-)">View</button>
+<button onclick="openProject('Video Generator','AI video from prompts.','images/generate-video.mp4')">View</button>
 </div>
 
-<!-- PROJECT 5 -->
 <div class="card">
 <h2>🎵 Sound Generator</h2>
 <p>AI music and sound creation</p>
-<button onclick="openProject(
-'Sound Generator',
-'I generated music and sound effects using AI tools.',
-'images/generate-sound.jpg'
-)">View</button>
+<button onclick="openProject('Sound Generator','AI generated sounds.','images/generate-sound.jpg')">View</button>
 </div>
 
-<!-- PROJECT 6 -->
 <div class="card">
 <h2>🕹️ Twine Text Game</h2>
 <p>Interactive story game</p>
-<button onclick="openProject(
-'Twine Game',
-'I made an interactive story game with branching choices.',
-'images/generate-video.mp4'
-)">View</button>
+<button onclick="openProject('Twine Game','Branching story game.','images/twine.jpg')">View</button>
 </div>
 
-<!-- PROJECT 7 -->
 <div class="card">
 <h2>🧊 AI 3D Model</h2>
 <p>AI generated 3D models</p>
-<button onclick="openProject(
-'3D Model',
-'I created 3D models using AI and Blender.',
-'images/generate-3d.jpg'
-)">View</button>
+<button onclick="openProject('3D Model','AI + Blender models.','images/generate-3d.jpg')">View</button>
 </div>
 
-<!-- PROJECT 8 -->
 <div class="card">
 <h2>🎲 3D Game Board</h2>
 <p>Interactive 3D board</p>
-<button onclick="openProject(
-'3D Game Board',
-'I built a 3D interactive board game environment.',
-'images/3d-games.jpg'
-)">View</button>
+<button onclick="openProject('3D Game Board','3D board game.','images/3d-games.jpg')">View</button>
 </div>
 
 </section>
@@ -128,7 +85,11 @@
 
 <h2 id="projectTitle"></h2>
 
-<img id="projectImage">
+<!-- IMAGE -->
+<img id="projectImage" style="display:none;">
+
+<!-- VIDEO -->
+<video id="projectVideo" controls style="display:none;"></video>
 
 <p id="projectDesc"></p>
 
@@ -141,37 +102,58 @@
 
 <script>
 
-// Typing effect
-const text="🤖 My AI Projects Portfolio"
+// Typing
+const text="🤖 My AI Projects Portfolio - Dyllan Wang"
 let i=0
-
 function typing(){
 if(i<text.length){
 document.querySelector(".typing").innerHTML+=text.charAt(i)
 i++
 setTimeout(typing,50)
-}
-}
+}}
 typing()
 
-// Popup
-function openProject(title, desc, image){
+// OPEN PROJECT (IMAGE + VIDEO SUPPORT)
+function openProject(title, desc, media){
+
 document.getElementById("popup").style.display="flex"
 document.getElementById("projectTitle").innerText=title
 document.getElementById("projectDesc").innerText=desc
-document.getElementById("projectImage").src=image
+
+let img = document.getElementById("projectImage")
+let video = document.getElementById("projectVideo")
+
+// reset
+img.style.display="none"
+video.style.display="none"
+video.pause()
+video.currentTime = 0
+
+if(media.endsWith(".mp4")){
+video.src = media
+video.style.display = "block"
+}else{
+img.src = media
+img.style.display = "block"
 }
 
+}
+
+// CLOSE POPUP
 function closePopup(){
 document.getElementById("popup").style.display="none"
+
+let video = document.getElementById("projectVideo")
+video.pause()
+video.currentTime = 0
 }
 
-// Mode toggle
+// MODE
 function toggleMode(){
 document.body.classList.toggle("light")
 }
 
-// Search
+// SEARCH
 function searchProjects(){
 let input=document.getElementById("searchBar").value.toLowerCase()
 let cards=document.querySelectorAll(".card")
@@ -182,7 +164,7 @@ card.style.display = text.includes(input) ? "block" : "none"
 })
 }
 
-// Particles
+// PARTICLES
 particlesJS("particles-js",{
 particles:{
 number:{value:80},
