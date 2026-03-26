@@ -85,11 +85,8 @@
 
 <h2 id="projectTitle"></h2>
 
-<!-- IMAGE -->
-<img id="projectImage" style="display:none;">
-
-<!-- VIDEO -->
-<video id="projectVideo" controls style="display:none;"></video>
+<img id="projectImage">
+<video id="projectVideo" controls></video>
 
 <p id="projectDesc"></p>
 
@@ -113,7 +110,7 @@ setTimeout(typing,50)
 }}
 typing()
 
-// OPEN PROJECT (IMAGE + VIDEO SUPPORT)
+// OPEN PROJECT
 function openProject(title, desc, media){
 
 document.getElementById("popup").style.display="flex"
@@ -123,12 +120,13 @@ document.getElementById("projectDesc").innerText=desc
 let img = document.getElementById("projectImage")
 let video = document.getElementById("projectVideo")
 
-// reset
+// RESET
 img.style.display="none"
 video.style.display="none"
 video.pause()
 video.currentTime = 0
 
+// CHECK TYPE
 if(media.endsWith(".mp4")){
 video.src = media
 video.style.display = "block"
@@ -182,4 +180,4 @@ onhover:{enable:true,mode:"repulse"}
 </script>
 
 </body>
-</html>
+</html> 
