@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Projects Portfolio</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<header>
+
+<h1 class="typing"></h1>
+<p>My AI Development Portfolio</p>
+
+<button class="modeToggle" onclick="toggleMode()">🌙 Toggle Mode</button>
+
+<input type="text" id="searchBar" placeholder="Search projects..." onkeyup="searchProjects()">
+
+</header>
+
+<section class="projects">
+
+<!-- PROJECT 1 -->
+<div class="card">
+<h2>🎨 AI Image Generator</h2>
+<p>Creates AI generated images</p>
+<button onclick="openProject(
+'AI Image Generator',
+'I built this to generate creative AI images using prompts and different styles.',
+'images/image1.png'
+)">View</button>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="card">
+<h2>✍️ AI Text Generator</h2>
+<p>Generates essays and writing</p>
+<button onclick="openProject(
+'AI Text Generator',
+'This helps generate essays, summaries, and writing ideas using AI.',
+'images/text.png'
+)">View</button>
+</div>
+
+<!-- PROJECT 3 -->
+<div class="card">
+<h2>💻 Code Generator</h2>
+<p>AI generates programming code</p>
+<button onclick="openProject(
+'Code Generator',
+'I used AI to help generate HTML, CSS, and JavaScript code.',
+'images/code.png'
+)">View</button>
+</div>
+
+<!-- PROJECT 4 -->
+<div class="card">
+<h2>🎬 Video Generator</h2>
+<p>Create videos with AI</p>
+<button onclick="openProject(
+'Video Generator',
+'This project creates AI videos from prompts and scripts.',
+'images/video.png'
+)">View</button>
+</div>
+
+<!-- PROJECT 5 -->
+<div class="card">
+<h2>🎵 Sound Generator</h2>
+<p>AI music and sound creation</p>
+<button onclick="openProject(
+'Sound Generator',
+'I generated music and sound effects using AI tools.',
+'images/sound.png'
+)">View</button>
+</div>
+
+<!-- PROJECT 6 -->
+<div class="card">
+<h2>🕹️ Twine Text Game</h2>
+<p>Interactive story game</p>
+<button onclick="openProject(
+'Twine Game',
+'I made an interactive story game with branching choices.',
+'images/game.png'
+)">View</button>
+</div>
+
+<!-- PROJECT 7 -->
+<div class="card">
+<h2>🧊 AI 3D Model</h2>
+<p>AI generated 3D models</p>
+<button onclick="openProject(
+'3D Model',
+'I created 3D models using AI and Blender.',
+'images/3d.png'
+)">View</button>
+</div>
+
+<!-- PROJECT 8 -->
+<div class="card">
+<h2>🎲 3D Game Board</h2>
+<p>Interactive 3D board</p>
+<button onclick="openProject(
+'3D Game Board',
+'I built a 3D interactive board game environment.',
+'images/board.png'
+)">View</button>
+</div>
+
+</section>
+
+<!-- POPUP -->
+<div id="popup" class="popup">
+<div class="popupContent">
+
+<span class="close" onclick="closePopup()">✖</span>
+
+<h2 id="projectTitle"></h2>
+
+<img id="projectImage">
+
+<p id="projectDesc"></p>
+
+</div>
+</div>
+
+<footer>
+<p>AI Portfolio • Built with HTML CSS JS</p>
+</footer>
+
+<script>
+
+// Typing effect
+const text="🤖 My AI Projects Portfolio"
+let i=0
+
+function typing(){
+if(i<text.length){
+document.querySelector(".typing").innerHTML+=text.charAt(i)
+i++
+setTimeout(typing,50)
+}
+}
+typing()
+
+// Popup
+function openProject(title, desc, image){
+document.getElementById("popup").style.display="flex"
+document.getElementById("projectTitle").innerText=title
+document.getElementById("projectDesc").innerText=desc
+document.getElementById("projectImage").src=image
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none"
+}
+
+// Mode toggle
+function toggleMode(){
+document.body.classList.toggle("light")
+}
+
+// Search
+function searchProjects(){
+let input=document.getElementById("searchBar").value.toLowerCase()
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(card=>{
+let text=card.innerText.toLowerCase()
+card.style.display = text.includes(input) ? "block" : "none"
+})
+}
+
+// Particles
+particlesJS("particles-js",{
+particles:{
+number:{value:80},
+size:{value:3},
+move:{speed:2},
+line_linked:{enable:true}
+},
+interactivity:{
+events:{
+onhover:{enable:true,mode:"repulse"}
+}
+}
+})
+
+</script>
+
+</body>
+</html>
